@@ -1,2 +1,3 @@
 # data-usage-monitor
-Data usage monitor for Huawei routers.
+
+A simple data usage monitor for Huawei routers.
