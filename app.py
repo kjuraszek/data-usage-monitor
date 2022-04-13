@@ -3,8 +3,10 @@ from flask import render_template
 import json
 
 app = Flask(__name__)
+app.config.from_object('config.ProductionConfig' if app.config['ENV'] == 'production'
+                       else 'config.DevelopmentConfig')
 
-@app.route("/")
+@app.route('/')
 def index():
     with open('data.json', 'r') as data_file:
         data = dict(json.load(data_file))
