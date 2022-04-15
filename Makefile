@@ -10,6 +10,15 @@ venv:
 install: venv
 	. $(VENV)/bin/activate && $(PIP) install -r requirements.txt
 
+install-dev: install
+	$(PIP) install -r requirements_dev.txt
+
+lint:
+	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data-loader.py wsgi.py application/
+
+flake8:
+	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data-loader.py wsgi.py application/
+
 run-app:
 	. $(VENV)/bin/activate && flask run
 
@@ -20,4 +29,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 run-app run-data-loader clean
