@@ -1,3 +1,6 @@
+"""
+This module is a main entry point for a Flask application.
+"""
 from application import init_app
 
 
