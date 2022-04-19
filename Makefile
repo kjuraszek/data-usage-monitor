@@ -14,16 +14,16 @@ install-dev: install
 	$(PIP) install -r requirements_dev.txt
 
 lint:
-	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data-loader.py wsgi.py application/
+	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data_loader.py wsgi.py application/
 
 flake8:
-	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data-loader.py wsgi.py application/
+	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data_loader.py wsgi.py application/
 
 run-app:
 	. $(VENV)/bin/activate && flask run
 
 run-data-loader:
-	. $(VENV)/bin/activate && $(PYTHON) data-loader.py
+	. $(VENV)/bin/activate && $(PYTHON) data_loader.py
 
 clean:
 	rm -rf __pycache__
