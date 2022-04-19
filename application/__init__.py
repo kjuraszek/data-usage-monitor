@@ -1,5 +1,5 @@
 """
-This module creates a Flask application instance using Application Facotry pattern.
+This module creates a Flask application instance using Application Factory pattern.
 """
 from flask import Flask
 

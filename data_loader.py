@@ -14,7 +14,7 @@ API_ENDPOINT = 'http://192.168.8.1/api/monitoring/month_statistics'
 def job():
     """
     A function which is scheduled within specified schedule.
-    This fucntion collects usage data from API and saves it to a JSON file.
+    This function collects usage data from API and saves it to a JSON file.
     """
     response = requests.get(API_ENDPOINT)
     response.raise_for_status()
