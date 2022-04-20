@@ -23,6 +23,12 @@ and then activate it:
 
 `make install`
 
+### Create .env
+
+This command creates an .env file (which contains environment variables) and generates a SECRET_KEY for a Flask app.
+
+`make create-env`
+
 ### Run app
 
 Run a new terminal window, activate venv and run data-loader:

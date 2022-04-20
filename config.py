@@ -15,19 +15,24 @@ class Config:  # pylint: disable=too-few-public-methods
     DEBUG = False
     TESTING = False
     TEMPLATES_FOLDER = 'templates'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.environ.get('SECRET_KEY') or str(os.urandom(24))
+    FLASK_APP = os.environ.get('FLASK_APP')
+    FLASK_ENV = os.environ.get('FLASK_ENV')
+    # SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # SQLALCHEMY_ECHO = False
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
 
 class ProductionConfig(Config):  # pylint: disable=too-few-public-methods
     """
     Production configuration class.
     """
-    TESTING = False
+    pass
 
 
 class DevelopmentConfig(Config):  # pylint: disable=too-few-public-methods
     """
     Development configuration class.
     """
-    ENV = "development"
-    DEVELOPMENT = True
+    DEBUG = True
+    # SQLALCHEMY_ECHO = True
