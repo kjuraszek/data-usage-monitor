@@ -27,6 +27,9 @@ else
 	. $(VENV)/bin/activate && $(PYTHON) -c 'import os; print("SECRET_KEY={}".format(os.urandom(24)))' >> .env
 endif
 
+upgrade-db:
+	. $(VENV)/bin/activate && flask db upgrade
+
 run-app:
 	. $(VENV)/bin/activate && flask run
 
@@ -37,4 +40,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 create-env upgrade-db run-app run-data-loader clean

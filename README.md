@@ -29,6 +29,22 @@ This command creates an .env file (which contains environment variables) and gen
 
 `make create-env`
 
+### Update database connection details
+
+After creating `.env` file edit value of `SQLALCHEMY_DATABASE_URI` and change values to proper values of your database credentials:
+
+- `<DB_USER>` - database user name
+- `<DB_PASSWORD>` - database user password
+- `<DB_HOST>` - database host
+- `<DB_PORT>` - database port
+- `<DB_NAME>` - database name
+
+This project uses PostgreSQL database - if you prefer to use other DB engine also change value of postgresql in `SQLALCHEMY_DATABASE_URI`.
+
+### set up the database
+
+`make upgrade-db`
+
 ### Run app
 
 Run a new terminal window, activate venv and run data-loader:
