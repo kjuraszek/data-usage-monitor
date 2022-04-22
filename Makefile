@@ -30,6 +30,9 @@ endif
 upgrade-db:
 	. $(VENV)/bin/activate && flask db upgrade
 
+downgrade-db:
+	. $(VENV)/bin/activate && flask db downgrade base
+
 run-app:
 	. $(VENV)/bin/activate && flask run
 
