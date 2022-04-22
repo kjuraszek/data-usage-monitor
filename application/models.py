@@ -1,9 +1,9 @@
 """Data models."""
 import datetime
-from . import db
+from .extensions import db
 
 
-class UsageStamp(db.Model):
+class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
     """
     Data model for usage stamps.
     """
@@ -26,9 +26,9 @@ class UsageStamp(db.Model):
     )
     created_at = db.Column(
         db.DateTime(timezone=True),
-        default=lambda: datetime.now(datetime.timezone.utc),
+        default=lambda: datetime.datetime.now(datetime.timezone.utc),
         nullable=False
     )
 
     def __repr__(self):
-        return '<Usage Stamp {}>'.format(self.created_at)
+        return f'<Usage Stamp {self.created_at}>'

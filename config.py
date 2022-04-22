@@ -27,7 +27,6 @@ class ProductionConfig(Config):  # pylint: disable=too-few-public-methods
     """
     Production configuration class.
     """
-    pass
 
 
 class DevelopmentConfig(Config):  # pylint: disable=too-few-public-methods
