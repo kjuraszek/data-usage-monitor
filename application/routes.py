@@ -3,7 +3,7 @@ Flask Application routing.
 """
 import json
 from flask import current_app as app
-from flask import render_template
+from flask import jsonify, render_template
 
 
 @app.route('/', methods=['GET'])
@@ -15,3 +15,24 @@ def index():
         data = dict(json.load(data_file))
         data_usage = data.get('data_usage', 0)
     return render_template('home.html', data_usage=data_usage)
+
+@app.route('/api/usage-stamp', methods=['GET'])
+def get_usage_stamp():
+    """
+    Function returns last usage stamp.
+    """
+    return jsonify({})
+
+@app.route('/api/usage-stamp', methods=['PUT'])
+def put_usage_stamp():
+    """
+    Function inserts usage stamp.
+    """
+    return jsonify({})
+
+@app.route('/api/usage-stamps', methods=['GET'])
+def get_usage_stamps():
+    """
+    Function returns usage stamps.
+    """
+    return jsonify({})
