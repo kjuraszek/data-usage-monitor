@@ -1,12 +1,17 @@
 """Data models."""
+from dataclasses import dataclass
 import datetime
 from .extensions import db
 
 
+@dataclass
 class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
     """
     Data model for usage stamps.
     """
+    current_month_download: int
+    current_month_upload: int
+    time_stamp: datetime.datetime
 
     __tablename__ = 'usage-stamps'
     id = db.Column(
@@ -24,11 +29,24 @@ class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
         index=False,
         nullable=False
     )
+    time_stamp = db.Column(
+        db.DateTime,
+        index=True,
+        unique=True,
+        nullable=False
+    )
     created_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.datetime.now(datetime.timezone.utc),
         nullable=False
     )
+    updated_at = db.Column(
+        db.DateTime(timezone=True),
+        default=lambda: datetime.datetime.now(datetime.timezone.utc),
+        nullable=False,
+        onupdate=datetime.datetime.now(datetime.timezone.utc)
+    )
 
     def __repr__(self):
-        return f'<Usage Stamp {self.created_at}>'
+        return (f'<Usage Stamp {self.current_month_download}/'
+                f'{self.current_month_upload} | {self.time_stamp} >')
