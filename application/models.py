@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 import datetime
 from .extensions import db
+from decimal import Decimal
 
 
 @dataclass
@@ -9,8 +10,8 @@ class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
     """
     Data model for usage stamps.
     """
-    current_month_download: int
-    current_month_upload: int
+    current_month_download: Decimal
+    current_month_upload: Decimal
     time_stamp: datetime.datetime
 
     __tablename__ = 'usage-stamps'
@@ -20,12 +21,12 @@ class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
         autoincrement=True
     )
     current_month_download = db.Column(
-        db.Integer,
+        db.Numeric(precision=10, scale=3),
         index=False,
         nullable=False
     )
     current_month_upload = db.Column(
-        db.Integer,
+        db.Numeric(precision=10, scale=3),
         index=False,
         nullable=False
     )
