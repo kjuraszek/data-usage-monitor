@@ -27,7 +27,7 @@ def get_usage_stamp():
     """
     Function returns last usage stamp.
     """
-    usage_stamp = UsageStamp.query.order_by(UsageStamp.time_stamp.desc()).first()
+    usage_stamp = UsageStamp.get_newest_by_date()
     return jsonify(usage_stamp)
 
 
@@ -54,5 +54,5 @@ def get_usage_stamps():
     """
     Function returns last 12 usage stamps.
     """
-    usage_stamps = UsageStamp.query.order_by(UsageStamp.time_stamp.desc()).limit(12).all()
+    usage_stamps = UsageStamp.get_multiple_newest_by_date()
     return jsonify(usage_stamps)
