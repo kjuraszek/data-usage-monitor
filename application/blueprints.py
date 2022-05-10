@@ -2,13 +2,16 @@
 Flask Application routing.
 """
 import json
-from flask import current_app as app
-from flask import jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request
 from .extensions import db
 from .models import UsageStamp
 
 
-@app.route('/', methods=['GET'])
+home_bp = Blueprint('home', __name__, 'templates')
+usage_stamp_bp = Blueprint('usage_stamp', __name__)
+usage_stamps_bp = Blueprint('usage_stamps', __name__)
+
+@home_bp.route('/', methods=['GET'])
 def index():
     """
     Function serves a template for a home page.
@@ -19,16 +22,16 @@ def index():
     return render_template('home.html', data_usage=data_usage)
 
 
-@app.route('/api/usage-stamp', methods=['GET'])
+@usage_stamp_bp.route('/api/usage-stamp', methods=['GET'])
 def get_usage_stamp():
     """
     Function returns last usage stamp.
     """
-    usage_stamp = UsageStamp.query.order_by(UsageStamp.time_stamp.desc()).first()
+    usage_stamp = UsageStamp.get_newest_by_date()
     return jsonify(usage_stamp)
 
 
-@app.route('/api/usage-stamp', methods=['PUT'])
+@usage_stamp_bp.route('/api/usage-stamp', methods=['PUT'])
 def put_usage_stamp():
     """
     Function inserts usage stamp.
@@ -46,10 +49,10 @@ def put_usage_stamp():
     return jsonify(usage_stamp)
 
 
-@app.route('/api/usage-stamps', methods=['GET'])
+@usage_stamps_bp.route('/api/usage-stamps', methods=['GET'])
 def get_usage_stamps():
     """
     Function returns last 12 usage stamps.
     """
-    usage_stamps = UsageStamp.query.order_by(UsageStamp.time_stamp.desc()).limit(12).all()
+    usage_stamps = UsageStamp.get_multiple_newest_by_date()
     return jsonify(usage_stamps)
