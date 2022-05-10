@@ -1,8 +1,8 @@
 """Data models."""
 from dataclasses import dataclass
 import datetime
-from .extensions import db
 from decimal import Decimal
+from .extensions import db
 
 
 @dataclass
@@ -51,3 +51,13 @@ class UsageStamp(db.Model):  # pylint: disable=too-few-public-methods
     def __repr__(self):
         return (f'<Usage Stamp {self.current_month_download}/'
                 f'{self.current_month_upload} | {self.time_stamp} >')
+
+    @classmethod
+    def get_newest_by_date(cls):
+        '''Method returns the newest usage stamp'''
+        return cls.query.order_by(cls.time_stamp.desc()).first()
+
+    @classmethod
+    def get_multiple_newest_by_date(cls, limit=12):
+        '''Method returns multiple newest usage stamps'''
+        return cls.query.order_by(cls.time_stamp.desc()).limit(limit).all()
