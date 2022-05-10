@@ -16,7 +16,10 @@ def init_app():
     db.init_app(app)
     migrate.init_app(app, db)
     with app.app_context():
-        from . import routes  # noqa: F401 pylint: disable=C0415,W0611
+        from .blueprints import home_bp, usage_stamp_bp, usage_stamps_bp
         from . import models  # noqa: F401 pylint: disable=C0415,W0611
+        app.register_blueprint(home_bp)
+        app.register_blueprint(usage_stamp_bp)
+        app.register_blueprint(usage_stamps_bp)
 
         return app
