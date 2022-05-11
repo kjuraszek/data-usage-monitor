@@ -1,7 +1,6 @@
 """
 Flask Application routing.
 """
-import json
 from flask import Blueprint, jsonify, render_template, request
 from .extensions import db
 from .models import UsageStamp
@@ -16,9 +15,8 @@ def index():
     """
     Function serves a template for a home page.
     """
-    with open('data.json', 'r', encoding='utf8') as data_file:
-        data = dict(json.load(data_file))
-        data_usage = data.get('data_usage', 0)
+    usage_stamp = UsageStamp.get_newest_by_date()
+    data_usage = 0.0 if usage_stamp is None else usage_stamp.current_month_download + usage_stamp.current_month_upload
     return render_template('home.html', data_usage=data_usage)
 
 
