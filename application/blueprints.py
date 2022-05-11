@@ -16,8 +16,9 @@ def index():
     Function serves a template for a home page.
     """
     usage_stamp = UsageStamp.get_newest_by_date()
-    data_usage = 0.0 if usage_stamp is None else usage_stamp.current_month_download + usage_stamp.current_month_upload
-    return render_template('home.html', data_usage=data_usage)
+    data_usage, empty = ((0.0, True) if usage_stamp is None else
+                         (usage_stamp.current_month_download + usage_stamp.current_month_upload, False))
+    return render_template('home.html', data_usage=data_usage, empty=empty)
 
 
 @usage_stamp_bp.route('/api/usage-stamp', methods=['GET'])
