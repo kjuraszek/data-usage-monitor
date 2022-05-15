@@ -10,7 +10,7 @@ import schedule
 
 ROUTER_API_ENDPOINT = 'http://192.168.8.1/api/monitoring/month_statistics'
 FLASK_API_ENDPOINT = 'http://127.0.0.1:5000/api/usage-stamp'
-JOB_SCHEDULE = 1
+JOB_SCHEDULE = 10
 
 
 def job():
