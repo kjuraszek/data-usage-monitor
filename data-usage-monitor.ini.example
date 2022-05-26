@@ -1,0 +1,9 @@
+[router]
+host=http://192.168.8.1
+month_statistics_endpoint=api/monitoring/month_statistics
+
+[application]
+host=http://127.0.0.1
+flask_port=5002
+flask_endpoint=api/usage-stamp
+data_loader_job_schedule=10
