@@ -12,11 +12,12 @@ import schedule
 config = configparser.ConfigParser()
 config.read('data-usage-monitor.ini')
 
-ROUTER_API_ENDPOINT = f'{config["router"]["host"]}/{config["router"]["month_statistics_endpoint"]}'
-FLASK_API_ENDPOINT = (f'{config["application"]["host"]}:'
-                      f'{config["application"]["flask_port"]}/'
-                      f'{config["application"]["flask_endpoint"]}')
-JOB_SCHEDULE = f'{config["application"]["data_loader_job_schedule"]}'
+ROUTER_API_ENDPOINT = (f'{config.get("router", "host")}/'
+                       f'{config.get("router", "month_statistics_endpoint")}')
+FLASK_API_ENDPOINT = (f'{config.get("application", "host")}:'
+                      f'{config.get("application", "flask_port")}/'
+                      f'{config.get("application", "flask_endpoint")}')
+JOB_SCHEDULE = int(config.get("application", "data_loader_job_schedule"))
 
 
 def job():

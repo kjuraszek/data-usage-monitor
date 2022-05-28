@@ -10,5 +10,5 @@ app = init_app()
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('data-usage-monitor.ini')
-    port = config['application']['flask_port']
+    port = int(config.get('application', 'flask_port'))
     app.run(host='0.0.0.0', port=port)
