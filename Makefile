@@ -50,4 +50,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env upgrade-db run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 create-env create-config upgrade-db run-app run-data-loader clean
