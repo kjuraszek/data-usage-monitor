@@ -133,3 +133,6 @@ dmypy.json
 
 # generated data.json
 /data.json
+
+# config file
+data-usage-monitor.ini

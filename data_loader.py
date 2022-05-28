@@ -4,13 +4,20 @@ Data Loader module is used to gather the data from Huawei router API.
 import datetime
 from decimal import Decimal
 import time
+import configparser
 import requests
 import bs4
 import schedule
 
-ROUTER_API_ENDPOINT = 'http://192.168.8.1/api/monitoring/month_statistics'
-FLASK_API_ENDPOINT = 'http://127.0.0.1:5000/api/usage-stamp'
-JOB_SCHEDULE = 10
+config = configparser.ConfigParser()
+config.read('data-usage-monitor.ini')
+
+ROUTER_API_ENDPOINT = (f'{config.get("router", "host")}/'
+                       f'{config.get("router", "month_statistics_endpoint")}')
+FLASK_API_ENDPOINT = (f'{config.get("application", "host")}:'
+                      f'{config.get("application", "flask_port")}/'
+                      f'{config.get("application", "flask_endpoint")}')
+JOB_SCHEDULE = int(config.get("application", "data_loader_job_schedule"))
 
 
 def job():

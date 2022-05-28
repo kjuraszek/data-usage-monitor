@@ -27,6 +27,15 @@ else
 	. $(VENV)/bin/activate && $(PYTHON) -c 'import os; print("SECRET_KEY={}".format(os.urandom(24)))' >> .env
 endif
 
+create-config:
+ifeq ($(shell test -s data-usage-monitor.ini && echo -n 0), 0)
+	@echo 'Nothing to be done for create-config - data-usage-monitor.ini file exists.'
+else
+	cp data-usage-monitor.ini.example data-usage-monitor.ini
+endif
+
+prepare: install create-env create-config
+
 upgrade-db:
 	. $(VENV)/bin/activate && flask db upgrade
 
@@ -43,4 +52,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env upgrade-db run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 create-env create-config prepare upgrade-db run-app run-data-loader clean
