@@ -34,6 +34,8 @@ else
 	cp data-usage-monitor.ini.example data-usage-monitor.ini
 endif
 
+prepare: install create-env create-config
+
 upgrade-db:
 	. $(VENV)/bin/activate && flask db upgrade
 
@@ -50,4 +52,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env create-config upgrade-db run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 create-env create-config prepare upgrade-db run-app run-data-loader clean
