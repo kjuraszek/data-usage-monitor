@@ -71,10 +71,11 @@ This project uses PostgreSQL database - if you prefer to use other DB engine als
 
 ### Run app
 
-Run a new terminal window, activate venv and run data-collector:
+Run data-collector:
 
 `make run-data-collector`
 
-and finally run the app:
+Open a new terminal window, activate venv and run:
 
-`make run-app`
+- `make run-flask` for development server or
+- `make run-uwsgi` for production server.

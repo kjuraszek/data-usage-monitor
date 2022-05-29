@@ -131,8 +131,5 @@ dmypy.json
 # VS Code
 .vscode/
 
-# generated data.json
-/data.json
-
 # config file
 data-usage-monitor.ini
