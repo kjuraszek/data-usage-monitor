@@ -14,10 +14,10 @@ install-dev: install
 	$(PIP) install -r requirements_dev.txt
 
 lint:
-	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data_loader.py wsgi.py application/
+	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data_collector.py wsgi.py application/
 
 flake8:
-	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data_loader.py wsgi.py application/
+	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data_collector.py wsgi.py application/
 
 create-env:
 ifeq ($(shell test -s .env && echo -n 0), 0)
@@ -45,11 +45,11 @@ downgrade-db:
 run-app:
 	. $(VENV)/bin/activate && flask run
 
-run-data-loader:
-	. $(VENV)/bin/activate && $(PYTHON) data_loader.py
+run-data-collector:
+	. $(VENV)/bin/activate && $(PYTHON) data_collector.py
 
 clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env create-config prepare upgrade-db run-app run-data-loader clean
+.PHONY: venv install install-dev lint flake8 create-env create-config prepare upgrade-db run-app run-data-collector clean
