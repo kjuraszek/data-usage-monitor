@@ -71,9 +71,9 @@ This project uses PostgreSQL database - if you prefer to use other DB engine als
 
 ### Run app
 
-Run a new terminal window, activate venv and run data-loader:
+Run a new terminal window, activate venv and run data-collector:
 
-`make run-data-loader`
+`make run-data-collector`
 
 and finally run the app:
 
