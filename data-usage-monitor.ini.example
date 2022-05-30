@@ -8,6 +8,13 @@ flask_port=5000
 flask_endpoint=api/usage-stamp
 data_collector_job_schedule=10
 
+[uwsgi]
+protocol = http
+socket = 127.0.0.1:5000
+module = wsgi:app
+master = true
+processes = 5
+
 [loggers]
 keys=root,dataCollector
 

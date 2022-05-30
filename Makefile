@@ -45,8 +45,11 @@ upgrade-db:
 downgrade-db:
 	. $(VENV)/bin/activate && flask db downgrade base
 
-run-app:
-	. $(VENV)/bin/activate && flask run
+run-flask:
+	. $(VENV)/bin/activate && $(PYTHON) wsgi.py
+
+run-uwsgi:
+	. $(VENV)/bin/activate && uwsgi --ini data-usage-monitor.ini
 
 run-data-collector:
 	. $(VENV)/bin/activate && $(PYTHON) data_collector.py
