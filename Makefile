@@ -11,13 +11,16 @@ install: venv
 	. $(VENV)/bin/activate && $(PIP) install -r requirements.txt
 
 install-dev: install
-	$(PIP) install -r requirements_dev.txt
+	. $(VENV)/bin/activate $(PIP) install -r requirements_dev.txt
 
 lint:
 	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data_collector.py wsgi.py application/
 
 flake8:
 	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data_collector.py wsgi.py application/
+
+testing:
+	. $(VENV)/bin/activate && pytest --cov=application tests/
 
 create-env:
 ifeq ($(shell test -s .env && echo -n 0), 0)
@@ -55,4 +58,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 create-env create-config prepare upgrade-db run-app run-data-collector clean
+.PHONY: venv install install-dev lint flake8 testing create-env create-config prepare upgrade-db run-app run-data-collector clean
