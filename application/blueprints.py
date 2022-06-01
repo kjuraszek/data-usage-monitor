@@ -10,6 +10,7 @@ home_bp = Blueprint('home', __name__, 'templates')
 usage_stamp_bp = Blueprint('usage_stamp', __name__)
 usage_stamps_bp = Blueprint('usage_stamps', __name__)
 
+
 @home_bp.route('/', methods=['GET'])
 def index():
     """
