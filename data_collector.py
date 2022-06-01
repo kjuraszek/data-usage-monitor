@@ -12,7 +12,7 @@ from urllib3.util.retry import Retry
 from urllib3.exceptions import MaxRetryError
 from requests import Session
 from requests.adapters import HTTPAdapter
-from requests.exceptions import ConnectionError, HTTPError
+from requests.exceptions import ConnectionError, HTTPError  # pylint: disable=W0622
 import bs4
 import schedule
 
@@ -46,7 +46,7 @@ def job():
     session = Session()
     session.mount("https://", adapter)
     session.mount("http://", adapter)
-    
+
     logger.info('Collecting usage data')
     try:
         router_api_response = session.get(ROUTER_API_ENDPOINT)
@@ -67,7 +67,7 @@ def job():
     except (ConnectionError, ConnectionRefusedError, HTTPError, MaxRetryError):
         logger.critical('Unable to insert data, job failed')
         return
-    logger.info(f'Inserted data: {flask_api_response.json()}')
+    logger.info('Inserted data: %s', flask_api_response.json())
 
 
 def convert_b_to_gb(number):
