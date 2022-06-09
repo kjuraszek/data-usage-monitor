@@ -1,4 +1,4 @@
-# my-vue
+# data-usage-monitor-dashboard
 
 ## Project setup
 ```
