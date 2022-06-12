@@ -8,8 +8,16 @@
         </h1>
 
         <p class="subheading font-weight-regular">
-          This page is currently blank but i will change soon!
+          This page is currently blank but it will change soon!
         </p>
+
+        <v-btn
+          depressed
+          color="error"
+          to="/"
+        >
+          Go back
+        </v-btn>
       </v-col>
 
     </v-row>

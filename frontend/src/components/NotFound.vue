@@ -6,10 +6,17 @@
         <h1 class="display-2 font-weight-bold mb-3">
           Page Not Found
         </h1>
-
+        
         <p class="subheading font-weight-regular">
-          Nothing found under this URL - try refreshing the page or return to home.
+          Nothing found under this URL - check if URL is correct or return to home.
         </p>
+        <v-btn
+          depressed
+          color="error"
+          to="/"
+        >
+          Go back
+        </v-btn>
       </v-col>
 
     </v-row>
