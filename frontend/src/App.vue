@@ -55,7 +55,9 @@
     </v-navigation-drawer>
 
     <v-main class="grey lighten-3">
-      <router-view></router-view>
+      <v-slide-x-transition mode="out-in">
+        <router-view />
+     </v-slide-x-transition>
     </v-main>
   </v-app>
 </template>
@@ -71,9 +73,9 @@ export default {
       items: [
         { text: 'Home', icon: 'mdi-home-heart', path: '/' },
         { text: 'Settings', icon: 'mdi-cogs', path: '/settings' },
+        { text: 'Offline', icon: 'mdi-close-circle-outline', path: '/offline' },
         { text: 'Help', icon: 'mdi-help-circle-outline', path: '/help' },
         { text: 'Github', icon: 'mdi-github', path: '/not-found' },
-        { text: 'Offline', icon: 'mdi-close-circle-outline', path: '/offline' },
       ],
     }),
 };
