@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
 
-      <v-col class="my-4">
+      <v-col class="my-10">
         <h1 class="display-2 font-weight-bold mb-3">
           Home
         </h1>
@@ -36,11 +36,15 @@
                   :size="150"
                   :width="25"
                   :value="52*n % 99"
-                  :color="`blue darken-${n}`"
+                  :color="`green darken-${n}`"
                 >
                   
                 </v-progress-circular>
+
+                <p class="text-h5">{{52*n % 99 }}%</p>
+                
               </v-card-text>
+              
             </v-card>
           </v-col>
           
