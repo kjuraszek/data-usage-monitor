@@ -20,7 +20,7 @@
           Current data usage
         </h2>
 
-        <v-row justify="left">
+        <v-row>
           <v-col
             v-for="n in 4"
             :key="n"
@@ -29,7 +29,7 @@
             md="3"
           >
             <v-card>
-              <v-card-title>Data Usage #{{n}}</v-card-title>
+              <v-card-title>Data Usage #{{ n }}</v-card-title>
               <v-card-text>
                 <v-progress-circular
                   :rotate="270"
@@ -41,7 +41,7 @@
                   
                 </v-progress-circular>
 
-                <p class="text-h5">{{52*n % 99 }}%</p>
+                <p class="text-h5">{{ 52*n % 99 }}%</p>
                 
               </v-card-text>
               
