@@ -3,13 +3,14 @@
     <v-row class="text-center">
 
       <v-col class="my-10">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Home
-        </h1>
+        <MainHeading
+          :text="mainTitle"
+        ></MainHeading>
 
-        <p class="subheading font-weight-regular">
-          Welcome to the Data Usage Monitor dashboard. You can see here a basic informations about the data transfer of your network (based on the data harvested from router).
-        </p>
+        <SubHeading
+          :text="subTitle"
+        ></SubHeading>
+
       </v-col>
 
       <v-col
@@ -22,7 +23,7 @@
 
         <v-row>
           <v-col
-            v-for="n in 4"
+            v-for="n in 3"
             :key="n"
             cols="12"
             sm="6"
@@ -47,6 +48,22 @@
               
             </v-card>
           </v-col>
+          <v-col
+            cols="12"
+            sm="6"
+            md="3"
+          >
+            <v-card>
+              <v-card-title>Status</v-card-title>
+              <v-card-text>
+                <Loader
+                text="Fetching the data"
+                ></Loader>
+                
+              </v-card-text>
+              
+            </v-card>
+          </v-col>
           
         </v-row>
       </v-col>
@@ -56,7 +73,18 @@
 </template>
 
 <script>
+  import { MainHeading, SubHeading, Loader } from "@/partials"
+
   export default {
-    name: 'Home',
+    name: "Home",
+    data: () => ({
+      mainTitle: "Home",
+      subTitle: "Welcome to the Data Usage Monitor dashboard. You can see here a basic informations about the data transfer of your network (based on the data harvested from router).",
+    }),
+    components: {
+      MainHeading,
+      SubHeading,
+      Loader
+    }
   }
 </script>
