@@ -48,6 +48,7 @@
               
             </v-card>
           </v-col>
+          
           <v-col
             cols="12"
             sm="6"
@@ -56,9 +57,22 @@
             <v-card>
               <v-card-title>Status</v-card-title>
               <v-card-text>
-                <Loader
-                text="Fetching the data"
-                ></Loader>
+                <v-switch
+                  v-model="loading"
+                  label="Switch 1"
+                ></v-switch>
+                <v-slide-y-transition mode="out-in">
+                  <Loader
+                      v-if="loading"
+                      text="Fetching the data"
+                    ></Loader>
+                    <Failed
+                      v-else
+                      text="Failed"
+                    ></Failed>
+                    
+                </v-slide-y-transition>
+                
                 
               </v-card-text>
               
@@ -73,7 +87,7 @@
 </template>
 
 <script>
-  import { MainHeading, SubHeading, Loader } from "@/partials"
+  import { MainHeading, SubHeading, Loader, Failed } from "@/partials"
 
   export default {
     name: "Home",
@@ -84,7 +98,18 @@
     components: {
       MainHeading,
       SubHeading,
-      Loader
-    }
+      Loader,
+      Failed
+    },
+    computed: {
+      loading: {
+        get () {
+          return this.$store.state.loading
+        },
+        set () {
+          this.$store.commit('switchLoading')
+        }
+      }
+    },
   }
 </script>
