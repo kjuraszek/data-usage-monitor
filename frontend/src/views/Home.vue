@@ -37,7 +37,7 @@
                   :size="150"
                   :width="25"
                   :value="52*n % 99"
-                  :color="`green darken-${n}`"
+                  color="accent"
                 >
                   
                 </v-progress-circular>

@@ -2,7 +2,7 @@
 <div>
   <v-icon
       size="64"
-      color="red darken-4"
+      color="error"
     >
       mdi-alert-remove
     </v-icon>

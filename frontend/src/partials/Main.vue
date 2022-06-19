@@ -1,5 +1,5 @@
 <template>
-    <v-main class="grey lighten-3">
+    <v-main class="secondary">
         <v-slide-x-transition mode="out-in">
             <router-view />
         </v-slide-x-transition>

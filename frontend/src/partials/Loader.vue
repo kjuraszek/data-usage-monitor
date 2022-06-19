@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-progress-circular
-    color="red darken-4"
+    color="error"
     indeterminate
     :rotate="35"
     :size="68"
