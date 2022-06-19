@@ -1,12 +1,12 @@
 <template>
 <div>
   <v-progress-circular
-  indeterminate
+    color="red darken-4"
+    indeterminate
     :rotate="35"
     :size="68"
     :width="6"
     :value="65"
-    :color="`red darken-4`"
   >
     
   </v-progress-circular>
