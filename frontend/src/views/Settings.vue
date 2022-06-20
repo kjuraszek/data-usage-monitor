@@ -24,8 +24,8 @@
           <v-card-title>Appearance</v-card-title>
           <v-card-text>
             <v-switch
-                  v-model="$vuetify.theme.dark"
-                  label="Dark theme"
+                  v-model="darkMode"
+                  label="Dark mode"
                 ></v-switch>
           </v-card-text>
           
@@ -47,6 +47,16 @@
     components: {
       MainHeading,
       SubHeading
-    }
+    },
+    computed: {
+      darkMode: {
+        get () {
+          return this.$store.state.darkMode
+        },
+        set () {
+          this.$store.commit('switchDarkMode')
+        }
+      }
+    },
   }
 </script>
