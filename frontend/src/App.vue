@@ -18,6 +18,8 @@ export default {
     LeftNav,
     Main
   },
-
+  mounted() {
+    this.$vuetify.theme.dark = this.$store.state.darkMode
+  }
 };
 </script>

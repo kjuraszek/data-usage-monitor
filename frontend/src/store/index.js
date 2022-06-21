@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         loading: true,
-        darkMode: false,
+        darkMode: localStorage.darkMode === "true" ? true : false,
       },
     mutations: {
         switchLoading (state) {

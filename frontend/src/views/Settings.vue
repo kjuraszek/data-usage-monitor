@@ -58,5 +58,10 @@
         }
       }
     },
+    watch: {
+      darkMode (newValue) {
+        localStorage.darkMode = newValue
+      }
+    }
   }
 </script>
