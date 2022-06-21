@@ -18,8 +18,9 @@ export default {
     LeftNav,
     Main
   },
-  mounted() {
+  mounted () {
     this.$vuetify.theme.dark = this.$store.state.darkMode
+    this.$meta().refresh()
   },
   metaInfo: {
     title: 'App',

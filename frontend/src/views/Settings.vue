@@ -60,7 +60,7 @@
     },
     watch: {
       darkMode (newValue) {
-        localStorage.darkMode = newValue
+        localStorage.setItem('darkMode', newValue)
       }
     },
     metaInfo: {
