@@ -62,6 +62,9 @@
       darkMode (newValue) {
         localStorage.darkMode = newValue
       }
-    }
+    },
+    metaInfo: {
+      title: 'Settings'
+    },
   }
 </script>

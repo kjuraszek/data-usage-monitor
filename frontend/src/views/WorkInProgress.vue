@@ -31,6 +31,9 @@
       GoBackButton,
       MainHeading,
       SubHeading
-    }
+    },
+    metaInfo: {
+      title: 'Page under development'
+    },
   }
 </script>

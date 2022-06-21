@@ -20,6 +20,13 @@ export default {
   },
   mounted() {
     this.$vuetify.theme.dark = this.$store.state.darkMode
-  }
+  },
+  metaInfo: {
+    title: 'App',
+    titleTemplate: '%s | Data Usage Monitor',
+    meta: [
+      { name: 'description', content: 'Data Usage Monitor is a simple application to view data from your Huawei router.' }
+    ]
+  },
 };
 </script>

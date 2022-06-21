@@ -111,5 +111,8 @@
         }
       }
     },
+    metaInfo: {
+      title: 'Home'
+    },
   }
 </script>

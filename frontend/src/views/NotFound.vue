@@ -31,6 +31,9 @@
       GoBackButton,
       MainHeading,
       SubHeading
-    }
+    },
+    metaInfo: {
+      title: 'Page not found'
+    },
   }
 </script>
