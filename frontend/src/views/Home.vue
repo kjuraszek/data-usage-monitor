@@ -23,71 +23,66 @@
 
         <v-row>
           <v-col
-            v-for="n in 3"
-            :key="n"
             cols="12"
-            sm="6"
-            md="3"
+            md="6"
           >
             <v-card>
-              <v-card-title>Data Usage #{{ n }}</v-card-title>
+              <v-card-title>Data Usage</v-card-title>
               <v-card-text>
-                <v-progress-circular
-                  :rotate="270"
-                  :size="150"
-                  :width="25"
-                  :value="52*n % 99"
-                  color="accent"
-                >
-                  
-                </v-progress-circular>
-
-                <p class="text-h5">{{ 52*n % 99 }}%</p>
-                
+                <v-slide-y-transition mode="out-in">
+                  <Loader
+                    v-if="loading"
+                    text="Fetching the data"
+                  ></Loader>
+                  <UsageDataTable v-else />
+                </v-slide-y-transition>               
               </v-card-text>
-              
             </v-card>
           </v-col>
-          
           <v-col
             cols="12"
-            sm="6"
-            md="3"
+            md="6"
           >
             <v-card>
               <v-card-title>Status</v-card-title>
               <v-card-text>
                 <v-switch
                   v-model="loading"
-                  label="Switch 1"
+                  label="Loading"
                 ></v-switch>
                 <v-slide-y-transition mode="out-in">
-                  <Loader
-                      v-if="loading"
-                      text="Fetching the data"
-                    ></Loader>
-                    <Failed
-                      v-else
-                      text="Failed"
-                    ></Failed>
-                    
+                  <div class="text-left">
+                    <div v-if="loading">
+                      <v-icon
+                        size="30"
+                        color="info"
+                      >
+                      mdi-reload
+                      </v-icon>
+                      Loading
+                    </div>
+                    <div v-else>
+                      <v-icon
+                      size="30"
+                      color="success"
+                      >
+                      mdi-check-circle-outline
+                      </v-icon>
+                      Success
+                    </div>
+                  </div>
                 </v-slide-y-transition>
-                
-                
               </v-card-text>
-              
             </v-card>
           </v-col>
-          
         </v-row>
       </v-col>
-
     </v-row>
   </v-container>
 </template>
 
 <script>
-  import { MainHeading, SubHeading, Loader, Failed } from "@/partials"
+  import { MainHeading, SubHeading, Loader, Failed, UsageDataTable } from "@/partials"
 
   export default {
     name: "Home",
@@ -99,7 +94,8 @@
       MainHeading,
       SubHeading,
       Loader,
-      Failed
+      Failed,
+      UsageDataTable
     },
     computed: {
       loading: {
