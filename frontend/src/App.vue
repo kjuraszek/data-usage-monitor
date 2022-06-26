@@ -30,7 +30,7 @@ export default {
   mounted () {
     this.$vuetify.theme.dark = this.$store.state.darkMode
     this.$meta().refresh()
-    if(this.useMockedData){
+    if (this.useMockedData) {
       this.getMockedData()
     } else {
       this.getData()
