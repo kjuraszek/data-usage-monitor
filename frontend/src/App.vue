@@ -61,7 +61,6 @@ export default {
           currentMonthUpload: MOCKED_MONTH_UPLOAD,
           currentTimeStamp: MOCKED_TIME_STAMP
         })
-        this.$store.commit('switchFailed')
         this.$store.commit('switchLoading')
       }, 2500)
     },
