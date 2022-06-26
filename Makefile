@@ -13,8 +13,14 @@ install: venv
 install-dev: install
 	. $(VENV)/bin/activate $(PIP) install -r requirements_dev.txt
 
+install-ui:
+	npm install --prefix frontend
+
 lint:
 	. $(VENV)/bin/activate && $(VENV)/bin/pylint config.py data_collector.py wsgi.py application/
+
+lint-ui:
+	npm run --prefix frontend lint
 
 flake8:
 	. $(VENV)/bin/activate && $(VENV)/bin/flake8 config.py data_collector.py wsgi.py application/
@@ -22,7 +28,7 @@ flake8:
 testing:
 	. $(VENV)/bin/activate && pytest --cov=application tests/
 
-checking: lint flake8 testing
+checking: lint flake8 testing lint-ui
 
 create-env:
 ifeq ($(shell test -s .env && echo -n 0), 0)
@@ -39,7 +45,7 @@ else
 	cp data-usage-monitor.ini.example data-usage-monitor.ini
 endif
 
-prepare: install create-env create-config
+prepare: install install-ui create-env create-config
 
 upgrade-db:
 	. $(VENV)/bin/activate && flask db upgrade
@@ -55,6 +61,12 @@ run-uwsgi:
 
 run-data-collector:
 	. $(VENV)/bin/activate && $(PYTHON) data_collector.py
+
+run-ui:
+	export VUE_APP_USE_MOCKED_VALUES=false && npm run --prefix frontend serve
+
+run-ui-mock:
+	export VUE_APP_USE_MOCKED_VALUES=true && npm run --prefix frontend serve
 
 clean:
 	rm -rf __pycache__

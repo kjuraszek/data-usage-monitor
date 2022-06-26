@@ -39,7 +39,8 @@ and then activate it:
 
 #### Install dependencies
 
-`make install`
+`make install` command installs dependencies for backend
+`make install-ui` command installs dependencies for frontend
 
 #### Create .env
 
@@ -65,7 +66,11 @@ After creating `.env` file edit value of `SQLALCHEMY_DATABASE_URI` and change va
 
 This project uses PostgreSQL database - if you prefer to use other DB engine also change value of postgresql in `SQLALCHEMY_DATABASE_URI` and a proper database driver in the requirements.txt file.
 
-### set up the database
+### \[Optional\] install dev dependencies
+
+To run tests and linting use `make install-dev`
+
+### Set up the database
 
 `make upgrade-db`
 
@@ -79,3 +84,8 @@ Open a new terminal window, activate venv and run:
 
 - `make run-flask` for development server or
 - `make run-uwsgi` for production server.
+
+Open a new terminal window, activate venv and run:
+
+- `make run-ui-mock` to run UI with a mocked data or
+- `make run-ui` to run UI with the data from an API
