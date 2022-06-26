@@ -11,7 +11,6 @@ export const router = new VueRouter({
     routes: [
         { path: '/', name: 'home', component: Home },
         { path: '/settings', component: Settings },
-        { path: '/help', component: WorkInProgress },
         { path: '*', component: NotFound }
         ],
 })
