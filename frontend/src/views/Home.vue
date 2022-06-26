@@ -30,8 +30,12 @@
               <v-card-title>Data Usage</v-card-title>
               <v-card-text>
                 <v-slide-y-transition mode="out-in">
+                  <Failed
+                    v-if="failed"
+                    text="Fetching the data failed"
+                  ></Failed>
                   <Loader
-                    v-if="loading"
+                    v-else-if="loading"
                     text="Fetching the data"
                   ></Loader>
                   <UsageDataTable v-else />
@@ -46,13 +50,18 @@
             <v-card>
               <v-card-title>Status</v-card-title>
               <v-card-text>
-                <v-switch
-                  v-model="loading"
-                  label="Loading"
-                ></v-switch>
                 <v-slide-y-transition mode="out-in">
                   <div class="text-left">
-                    <div v-if="loading">
+                    <div v-if="failed">
+                      <v-icon
+                      size="30"
+                      color="error"
+                      >
+                      mdi-close-circle
+                      </v-icon>
+                      Failed
+                    </div>
+                    <div v-else-if="loading">
                       <v-icon
                         size="30"
                         color="info"
@@ -98,13 +107,11 @@
       UsageDataTable
     },
     computed: {
-      loading: {
-        get () {
+      loading () {
           return this.$store.state.loading
         },
-        set () {
-          this.$store.commit('switchLoading')
-        }
+      failed () {
+        return this.$store.state.failed
       }
     },
     metaInfo: {

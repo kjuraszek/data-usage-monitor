@@ -7,5 +7,6 @@ import SubHeading from './SubHeading'
 import Loader from './Loader'
 import Failed from './Failed'
 import UsageDataTable from './UsageDataTable'
+import SystemBar from './SystemBar'
 
-export { TopBar, LeftNav, Main, GoBackButton, MainHeading, SubHeading, Loader, Failed, UsageDataTable }
+export { TopBar, LeftNav, Main, GoBackButton, MainHeading, SubHeading, Loader, Failed, UsageDataTable, SystemBar }
