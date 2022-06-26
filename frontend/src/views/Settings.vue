@@ -31,6 +31,21 @@
           
         </v-card>
       </v-col>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-card>
+          <v-card-title>Miscellaneous</v-card-title>
+          <v-card-text>
+            <v-switch
+                  v-model="autoRefresh"
+                  label="Auto refresh by 1 minute"
+                ></v-switch>
+          </v-card-text>
+          
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -56,12 +71,23 @@
         set () {
           this.$store.commit('switchDarkMode')
         }
-      }
+      },
+      autoRefresh: {
+        get () {
+          return this.$store.state.autoRefresh
+        },
+        set () {
+          this.$store.commit('switchAutoRefresh')
+        }
+      },
     },
     watch: {
       darkMode (newValue) {
         localStorage.setItem('darkMode', newValue)
-      }
+      },
+      autoRefresh (newValue) {
+        localStorage.setItem('autoRefresh', newValue)
+      },
     },
     metaInfo: {
       title: 'Settings'

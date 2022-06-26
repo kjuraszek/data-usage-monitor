@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
     state: {
         loading: true,
         failed: false,
+        autoRefresh: localStorage.getItem('autoRefresh') === 'true',
         darkMode: localStorage.getItem('darkMode') === 'true',
         currentMonthDownload: 0.0,
         currentMonthUpload: 0.0,
@@ -19,6 +20,9 @@ export const store = new Vuex.Store({
         },
         switchFailed (state) {
             state.failed = !state.failed
+        },
+        switchAutoRefresh (state) {
+            state.autoRefresh = !state.autoRefresh
         },
         switchDarkMode (state) {
             state.darkMode = !state.darkMode

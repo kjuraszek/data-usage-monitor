@@ -12,7 +12,7 @@
 
 <script>
 import { TopBar, LeftNav, Main, SystemBar } from '@/partials'
-import { MOCKED_MONTH_DOWNLOAD, MOCKED_MONTH_UPLOAD, MOCKED_TIME_STAMP, USAGE_STAMP_API_ENDPOINT } from '@/consts'
+import { MOCKED_MONTH_DOWNLOAD, MOCKED_MONTH_UPLOAD, MOCKED_TIME_STAMP, USAGE_STAMP_API_ENDPOINT, AUTOREFRESH_INTERVAL } from '@/consts'
 
 export default {
   name: 'App',
@@ -25,7 +25,15 @@ export default {
   computed: {
       useMockedData () {
         return process.env.VUE_APP_USE_MOCKED_VALUES === "true"
+      },
+      autoRefresh () {
+        return this.$store.state.autoRefresh
       }
+  },
+  data () {
+    return {
+      interval: null
+    }
   },
   mounted () {
     this.$vuetify.theme.dark = this.$store.state.darkMode
@@ -35,9 +43,12 @@ export default {
     } else {
       this.getData()
     }
+    if (this.autoRefresh) {
+      this.startInterval()
+    }
   },
   methods: {
-    async getData() {
+    async getData () {
       try {
         const response = await this.$http.get(
           USAGE_STAMP_API_ENDPOINT,
@@ -54,7 +65,7 @@ export default {
         console.log(error);
       }
     },
-    async getMockedData() {
+    async getMockedData () {
       setTimeout(() => {
         this.$store.commit('updateUsageData', {
           currentMonthDownload: MOCKED_MONTH_DOWNLOAD,
@@ -64,6 +75,27 @@ export default {
         this.$store.commit('switchLoading')
       }, 2500)
     },
+    startInterval () {
+      this.interval = setInterval(() => {
+        if (this.useMockedData) {
+          this.getMockedData()
+        } else {
+          this.getData()
+        }
+      }, AUTOREFRESH_INTERVAL)
+    }
+  },
+  watch: {
+    autoRefresh (newValue) {
+        if (newValue === true) {
+          this.startInterval()
+        } else {
+          if (this.interval) {
+            clearInterval(this.interval)
+            this.interval = null
+          }
+        }
+      }
   },
   metaInfo: {
     title: 'App',
@@ -72,5 +104,8 @@ export default {
       { name: 'description', content: 'Data Usage Monitor is a simple application to view data from your Huawei router.' }
     ]
   },
+  beforeDestroy () {
+    clearInterval(this.interval)
+  }
 };
 </script>
