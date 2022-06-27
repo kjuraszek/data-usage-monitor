@@ -143,3 +143,6 @@ frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
 frontend/pnpm-debug.log*
+
+# ui tests coverage
+frontend/coverage
