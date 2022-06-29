@@ -1,6 +1,6 @@
 import { Home, NotFound, Settings } from '@/views'
 
-export const routes = [
+export default [
     { path: '/', name: 'home', component: Home },
     { path: '/settings', component: Settings },
     { path: '*', component: NotFound }
