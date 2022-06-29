@@ -28,7 +28,10 @@ flake8:
 testing:
 	. $(VENV)/bin/activate && pytest --cov=application tests/
 
-checking: lint flake8 testing lint-ui
+testing-ui:
+	npm run --prefix frontend test:unit
+
+checking: lint flake8 testing lint-ui testing-ui
 
 create-env:
 ifeq ($(shell test -s .env && echo -n 0), 0)
@@ -72,4 +75,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
 	
-.PHONY: venv install install-dev lint flake8 testing checking create-env create-config prepare upgrade-db run-app run-data-collector clean
+.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config prepare upgrade-db run-app run-data-collector run-ui run-ui-mock clean

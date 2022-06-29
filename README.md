@@ -66,10 +66,6 @@ After creating `.env` file edit value of `SQLALCHEMY_DATABASE_URI` and change va
 
 This project uses PostgreSQL database - if you prefer to use other DB engine also change value of postgresql in `SQLALCHEMY_DATABASE_URI` and a proper database driver in the requirements.txt file.
 
-### \[Optional\] install dev dependencies
-
-To run tests and linting use `make install-dev`
-
 ### Set up the database
 
 `make upgrade-db`
@@ -89,3 +85,27 @@ Open a new terminal window, activate venv and run:
 
 - `make run-ui-mock` to run UI with a mocked data or
 - `make run-ui` to run UI with the data from an API
+
+### \[Optional\] Running tests
+
+#### Install dev dependencies
+
+Before running tests and linting use `make install-dev` after installing core dependecies
+
+#### Check all
+
+To run linting and tests simply run `make checking`
+
+#### Check linting
+
+To check linting:
+
+- `make lint` and `make flake8` for backend and
+- `make lint-ui` for UI
+
+#### Run tests
+
+To run tests:
+
+- `make testing` for backend and
+- `make testing-ui` for UI
