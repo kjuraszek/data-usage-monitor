@@ -28,6 +28,9 @@ export default {
       },
       autoRefresh () {
         return this.$store.state.autoRefresh
+      },
+      loading () {
+        return this.$store.state.loading
       }
   },
   data () {
@@ -65,7 +68,7 @@ export default {
         console.log(error);
       }
     },
-    async getMockedData () {
+    getMockedData () {
       setTimeout(() => {
         this.$store.commit('updateUsageData', {
           currentMonthDownload: MOCKED_MONTH_DOWNLOAD,
@@ -77,6 +80,9 @@ export default {
     },
     startInterval () {
       this.interval = setInterval(() => {
+        if (!this.loading) {
+          this.$store.commit('switchLoading')
+        }
         if (this.useMockedData) {
           this.getMockedData()
         } else {
