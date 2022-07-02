@@ -53,7 +53,7 @@ def test_get_usage_stamp_without_usage_stamps(client, mocker):
     response = client.get('/api/usage-stamp')
     mock_get_newest_by_date.assert_called_once()
     assert response.status_code == 200
-    assert {} == json.loads(response.get_data(as_text=True))
+    assert None == json.loads(response.get_data(as_text=True))
 
 
 def test_put_usage_stamp(client, mocker):
