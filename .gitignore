@@ -110,6 +110,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+backend/.env
+backend/venv
+data_collector/venv
 
 # Spyder project settings
 .spyderproject
@@ -132,8 +135,10 @@ dmypy.json
 # VS Code
 .vscode/
 
-# config file
+# config files
 data-usage-monitor.ini
+data_collector/data-usage-monitor.ini
+backend/data-usage-monitor.ini
 
 # node packages
 frontend/node_modules
