@@ -20,7 +20,7 @@ import schedule
 
 _CONFIG_FILE_NAME = 'data-usage-monitor.ini'
 
-logging.config.fileConfig(_CONFIG_FILE_NAME)
+logging.config.fileConfig(os.path.join(os.path.dirname(__file__), _CONFIG_FILE_NAME))
 logger = logging.getLogger('dataCollector')
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), _CONFIG_FILE_NAME))
