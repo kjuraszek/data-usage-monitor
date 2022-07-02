@@ -82,6 +82,8 @@ upgrade-db:
 downgrade-db:
 	$(VENV_ACTIVATE_BACKEND) && $(ENV_VARS) && $(VENV_BACKEND)/bin/flask db downgrade base --directory $(BACKEND)/migrations
 
+reset-db: downgrade-db upgrade-db
+
 run-flask:
 	$(VENV_ACTIVATE_BACKEND) && $(ENV_VARS) && $(VENV_BACKEND)/bin/flask run
 
