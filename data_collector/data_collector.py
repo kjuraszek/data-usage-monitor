@@ -6,6 +6,7 @@ import logging
 import logging.config
 from decimal import Decimal
 import warnings
+import os
 import time
 import configparser
 from urllib3.util.retry import Retry
@@ -22,7 +23,7 @@ _CONFIG_FILE_NAME = 'data-usage-monitor.ini'
 logging.config.fileConfig(_CONFIG_FILE_NAME)
 logger = logging.getLogger('dataCollector')
 config = configparser.ConfigParser()
-config.read(_CONFIG_FILE_NAME)
+config.read(os.path.join(os.path.dirname(__file__), _CONFIG_FILE_NAME))
 
 warnings.simplefilter("ignore", bs4.XMLParsedAsHTMLWarning, lineno=0)
 

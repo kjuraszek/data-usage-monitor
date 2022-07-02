@@ -2,7 +2,7 @@
 Set of fixtures for application.
 """
 import pytest
-from application import init_app
+from backend.application import init_app
 
 
 @pytest.fixture()
