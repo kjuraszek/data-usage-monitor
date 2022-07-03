@@ -99,6 +99,15 @@ run-ui:
 run-ui-mock:
 	export VUE_APP_USE_MOCKED_VALUES=true && npm run --prefix $(FRONTEND) serve
 
+build-docker:
+	docker-compose build
+
+build-docker-mock:
+	docker-compose build --build-arg MOCKED_VALUES=true
+
+run-docker:
+	docker-compose up -d
+
 clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
