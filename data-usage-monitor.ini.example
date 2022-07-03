@@ -11,7 +11,7 @@ data_collector_job_schedule=10
 [uwsgi]
 protocol = http
 socket = 127.0.0.1:5000
-module = wsgi:app
+module = backend.wsgi:app
 master = true
 processes = 5
 

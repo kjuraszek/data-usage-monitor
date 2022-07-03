@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 import datetime
 from decimal import Decimal
-from .extensions import db
+from backend.application.extensions import db
 
 
 @dataclass

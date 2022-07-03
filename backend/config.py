@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 
 class Config:  # pylint: disable=too-few-public-methods

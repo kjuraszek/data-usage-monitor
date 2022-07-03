@@ -86,6 +86,13 @@ Open a new terminal window, activate venv and run:
 - `make run-ui-mock` to run UI with a mocked data or
 - `make run-ui` to run UI with the data from an API
 
+### Cleaning the data and database
+
+To clean created data run:
+
+- `make reset-db` - this command cleans database
+- `make clean` - this command removes created .ini config files, .env file, virtual environments and node_modules
+
 ### \[Optional\] Running tests
 
 #### Install dev dependencies

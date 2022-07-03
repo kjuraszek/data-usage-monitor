@@ -2,8 +2,8 @@
 Flask Application routing.
 """
 from flask import Blueprint, jsonify, render_template, request
-from .extensions import db
-from .models import UsageStamp
+from backend.application.extensions import db
+from backend.application.models import UsageStamp
 
 
 home_bp = Blueprint('home', __name__, 'templates')
