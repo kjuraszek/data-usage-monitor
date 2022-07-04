@@ -56,7 +56,7 @@ This command creates an .ini config file (which contains configuration options).
 
 ### Update database connection details
 
-After creating `.env` file edit value of `SQLALCHEMY_DATABASE_URI` and change values to proper values of your database credentials:
+This project uses PostgreSQL database - after creating `.env` file edit variables starting of `POSTGRES_` and change their values to proper values of your database credentials:
 
 - `<DB_USER>` - database user name
 - `<DB_PASSWORD>` - database user password
@@ -64,7 +64,13 @@ After creating `.env` file edit value of `SQLALCHEMY_DATABASE_URI` and change va
 - `<DB_PORT>` - database port
 - `<DB_NAME>` - database name
 
-This project uses PostgreSQL database - if you prefer to use other DB engine also change value of postgresql in `SQLALCHEMY_DATABASE_URI` and a proper database driver in the requirements.txt file.
+Examplary values:
+
+    POSTGRES_HOST=localhost
+    POSTGRES_PORT=5432
+    POSTGRES_DATABASE=data-monitor
+    POSTGRES_USER=data-monitor
+    POSTGRES_PASSWORD=my$ECR#Tpwd
 
 ### Set up the database
 
