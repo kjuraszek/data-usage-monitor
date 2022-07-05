@@ -74,7 +74,11 @@ else
 	cp data-usage-monitor.ini.example $(DATA_COLLECTOR)/data-usage-monitor.ini
 endif
 
-prepare: install install-ui create-env create-config
+prepare: prepare-deps prepare-env
+
+prepare-deps: install install-ui
+
+prepare-env: create-env create-config
 
 upgrade-db:
 	$(VENV_ACTIVATE_BACKEND) && $(ENV_VARS) && $(VENV_BACKEND)/bin/flask db upgrade --directory $(BACKEND)/migrations
@@ -126,4 +130,4 @@ clean:
 	rm -rf $(VENV_BACKEND)
 	rm -rf $(FRONTEND)/node_modules
 	
-.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare upgrade-db run-app run-data-collector run-ui run-ui-mock build-docker build-docker-mock run-docker stop-docker clean-docker clean
+.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare prepare-deps prepare-env upgrade-db run-app run-data-collector run-ui run-ui-mock build-docker build-docker-mock run-docker stop-docker clean-docker clean

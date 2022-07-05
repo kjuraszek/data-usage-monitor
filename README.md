@@ -5,41 +5,43 @@ For now it only shows current usage - the value is updated by 1 minute.
 
 ## How to use it ?
 
+### Prerequisites
+
+- Make
+- and either :
+  - Python 3.9
+  - node with npm
+  - PostgreSQL database
+- or :
+  - Docker and Docker-compose
+
 ### Clone this repository
 
 `git clone https://github.com/kjuraszek/data-usage-monitor`
 
-### Prepare an environment
+### Prepare .env and .ini files
 
 This step:
 
-- prepares a virtual environment and install dependencies
 - creates an .env file
-- creates an data-usage-monitor.ini file
+- creates an data-usage-monitor.ini files
+- prepares a virtual environments and install dependencies (if not using Docker)
 
-Run the command:
+If you prefer to use Docker run the command `make prepare-env`.
 
-`make prepare`
-
-and then activate a virtual environment:
-
-`. venv/bin/activate`
+Otherwise - run the command `make prepare`.
 
 If you prefer to run each step separately follow below steps. Otherwise move to [Update database connection details](#update-database-connection-details) section.
 
 #### Prepare a virtual environment
 
-Create and activate a virtual environment (if not exists):
+Create virtual environments (if they don't exist):
 
 `make venv`
 
-and then activate it:
-
-`. venv/bin/activate`
-
 #### Install dependencies
 
-`make install` command installs dependencies for backend
+`make install` command installs dependencies for backend and data_collector
 `make install-ui` command installs dependencies for frontend
 
 #### Create .env
@@ -72,25 +74,47 @@ Examplary values:
     POSTGRES_USER=data-monitor
     POSTGRES_PASSWORD=my$ECR#Tpwd
 
-### Set up the database
+### Running app in Docker containers
+
+*if you prefer to run app from the command line move to* [Run app from the command line](#run-app-from-the-command-line) *section*.
+
+Build images with command :
+
+- `make build-docker` or
+- `make build-docker-mock` - to build frontend image with mocked data
+
+To start containers run `make run-docker` command.
+Application should be by default accessible on :
+
+- [localhost:8080/](http://localhost:8080/) for frontend
+- [localhost:5000/](http://localhost:5000/) for backend
+
+To stop containers run `make stop-docker` command.
+
+### Run app from the command line
+
+Set up the database:
 
 `make upgrade-db`
-
-### Run app
 
 Run data-collector:
 
 `make run-data-collector`
 
-Open a new terminal window, activate venv and run:
+Open a new terminal window and run:
 
 - `make run-flask` for development server or
 - `make run-uwsgi` for production server.
 
-Open a new terminal window, activate venv and run:
+Open a new terminal window and run:
 
 - `make run-ui-mock` to run UI with a mocked data or
 - `make run-ui` to run UI with the data from an API
+
+Application should be by default accessible on:
+
+- [localhost:8080/](http://localhost:8080/) for frontend
+- [localhost:5000/](http://localhost:5000/) for backend
 
 ### Cleaning the data and database
 
@@ -98,8 +122,11 @@ To clean created data run:
 
 - `make reset-db` - this command cleans database
 - `make clean` - this command removes created .ini config files, .env file, virtual environments and node_modules
+- `make clean-docker` - this command removes created Docker images, containers and volumes
 
 ### \[Optional\] Running tests
+
+This applies only for non-Docker set up.
 
 #### Install dev dependencies
 
