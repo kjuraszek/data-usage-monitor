@@ -4,6 +4,7 @@ month_statistics_endpoint=api/monitoring/month_statistics
 
 [application]
 host=http://127.0.0.1
+docker_host=http://backend
 flask_port=5000
 flask_endpoint=api/usage-stamp
 data_collector_job_schedule=10

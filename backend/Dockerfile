@@ -4,6 +4,7 @@ RUN apt-get install libpq-dev build-essential -y
 WORKDIR /code
 RUN mkdir backend
 COPY requirements.txt backend/requirements.txt
+ENV DOCKERIZED=true
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
