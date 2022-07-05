@@ -100,13 +100,19 @@ run-ui-mock:
 	export VUE_APP_USE_MOCKED_VALUES=true && npm run --prefix $(FRONTEND) serve
 
 build-docker:
-	docker-compose build
+	$(ENV_VARS) && docker-compose build
 
 build-docker-mock:
-	docker-compose build --build-arg MOCKED_VALUES=true
+	$(ENV_VARS) && docker-compose build --build-arg MOCKED_VALUES=true
 
 run-docker:
-	docker-compose up -d
+	$(ENV_VARS) && export POSTGRES_HOST=db && docker-compose up -d
+
+stop-docker:
+	$(ENV_VARS) && docker-compose stop
+
+clean-docker:
+	$(ENV_VARS) && docker-compose down --rmi=all --volume
 
 clean:
 	rm -rf __pycache__
@@ -120,4 +126,4 @@ clean:
 	rm -rf $(VENV_BACKEND)
 	rm -rf $(FRONTEND)/node_modules
 	
-.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare upgrade-db run-app run-data-collector run-ui run-ui-mock clean
+.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare upgrade-db run-app run-data-collector run-ui run-ui-mock build-docker build-docker-mock run-docker stop-docker clean-docker clean
