@@ -7,7 +7,8 @@ For now it only shows current usage - the value is updated by 1 minute.
 
 ### Prerequisites
 
-- Make
+- Unix OS
+- GNU Make
 - and either :
   - Python 3.9
   - node with npm
@@ -27,11 +28,11 @@ This step:
 - creates an data-usage-monitor.ini files
 - prepares a virtual environments and install dependencies (if not using Docker)
 
-If you prefer to use Docker run the command `make prepare-env`.
+If you prefer to use Docker run the command `make prepare-env` and move to [Update database connection details](#update-database-connection-details) section.
 
-Otherwise - run the command `make prepare`.
+Otherwise - run the command `make prepare` and move to [Update database connection details](#update-database-connection-details) section.
 
-If you prefer to run each step separately follow below steps. Otherwise move to [Update database connection details](#update-database-connection-details) section.
+Or if you prefer to run each step separately follow below steps.
 
 #### Prepare a virtual environment
 
