@@ -20,9 +20,9 @@ class Config:  # pylint: disable=too-few-public-methods
     FLASK_ENV = os.environ.get('FLASK_ENV')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI=(f'postgresql://{os.environ.get("POSTGRES_USER")}:'
-        f'{os.environ.get("POSTGRES_PASSWORD")}@{os.environ.get("POSTGRES_HOST")}:'
-        f'{os.environ.get("POSTGRES_PORT")}/{os.environ.get("POSTGRES_DATABASE")}')
+    SQLALCHEMY_DATABASE_URI = (f'postgresql://{os.environ.get("POSTGRES_USER")}:'
+                               f'{os.environ.get("POSTGRES_PASSWORD")}@{os.environ.get("POSTGRES_HOST")}:'
+                               f'{os.environ.get("POSTGRES_PORT")}/{os.environ.get("POSTGRES_DATABASE")}')
 
 
 class ProductionConfig(Config):  # pylint: disable=too-few-public-methods
