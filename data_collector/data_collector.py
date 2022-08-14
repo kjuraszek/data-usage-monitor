@@ -27,9 +27,10 @@ config.read(os.path.join(os.path.dirname(__file__), _CONFIG_FILE_NAME))
 
 warnings.simplefilter("ignore", bs4.XMLParsedAsHTMLWarning, lineno=0)
 
+DOCKERIZED = os.environ.get("DOCKERIZED")
 ROUTER_API_ENDPOINT = (f'{config.get("router", "host")}/'
                        f'{config.get("router", "month_statistics_endpoint")}')
-FLASK_API_ENDPOINT = (f'{config.get("application", "host")}:'
+FLASK_API_ENDPOINT = (f'{config.get("application", "docker_host" if DOCKERIZED=="true" else "host")}:'
                       f'{config.get("application", "flask_port")}/'
                       f'{config.get("application", "flask_endpoint")}')
 JOB_SCHEDULE = int(config.get("application", "data_collector_job_schedule"))

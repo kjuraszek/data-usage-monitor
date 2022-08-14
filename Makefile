@@ -74,7 +74,11 @@ else
 	cp data-usage-monitor.ini.example $(DATA_COLLECTOR)/data-usage-monitor.ini
 endif
 
-prepare: install install-ui create-env create-config
+prepare: prepare-deps prepare-env
+
+prepare-deps: install install-ui
+
+prepare-env: create-env create-config
 
 upgrade-db:
 	$(VENV_ACTIVATE_BACKEND) && $(ENV_VARS) && $(VENV_BACKEND)/bin/flask db upgrade --directory $(BACKEND)/migrations
@@ -99,6 +103,23 @@ run-ui:
 run-ui-mock:
 	export VUE_APP_USE_MOCKED_VALUES=true && npm run --prefix $(FRONTEND) serve
 
+build-docker:
+	$(ENV_VARS) && docker-compose build
+
+build-docker-mock:
+	$(ENV_VARS) && docker-compose build --build-arg MOCKED_VALUES=true
+
+run-docker:
+	$(ENV_VARS) && export POSTGRES_HOST=db && docker-compose up -d
+	@echo 'Frontend running on http://localhost:8080/'
+	@echo 'Backend running on http://localhost:5000/'
+
+stop-docker:
+	$(ENV_VARS) && docker-compose stop
+
+clean-docker:
+	$(ENV_VARS) && docker-compose down --rmi=all --volume
+
 clean:
 	rm -rf __pycache__
 	rm -rf $(VENV)
@@ -111,4 +132,4 @@ clean:
 	rm -rf $(VENV_BACKEND)
 	rm -rf $(FRONTEND)/node_modules
 	
-.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare upgrade-db run-app run-data-collector run-ui run-ui-mock clean
+.PHONY: venv install install-dev install-ui lint lint-ui flake8 testing testing-ui checking create-env create-config copy-config prepare prepare-deps prepare-env upgrade-db run-app run-data-collector run-ui run-ui-mock build-docker build-docker-mock run-docker stop-docker clean-docker clean

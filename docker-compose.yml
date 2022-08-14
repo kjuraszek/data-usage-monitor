@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  frontend:
+    build: 
+      context: frontend
+      args:
+        MOCKED_VALUES: "false"
+    ports:
+      - "8080:8080"
+  db:
+    image: postgres:12.11-alpine
+    restart: always
+    env_file: backend/.env
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  backend:
+    build: 
+      context: backend
+    depends_on:
+      - db
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    links:
+      - db
+    env_file: backend/.env
+    environment:
+      PGHOST: '${POSTGRES_HOST}'
+      PGDATABASE: '${POSTGRES_DATABASE}'
+      PGUSER: '${POSTGRES_USER}'
+      PGPASSWORD: '${POSTGRES_PASSWORD}'
+  data_collector:
+    build: 
+      context: data_collector
+    depends_on:
+      - backend
+volumes:
+  db:
+    driver: local
