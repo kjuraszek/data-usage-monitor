@@ -111,6 +111,8 @@ build-docker-mock:
 
 run-docker:
 	$(ENV_VARS) && export POSTGRES_HOST=db && docker-compose up -d
+	@echo 'Frontend running on http://localhost:8080/'
+	@echo 'Backend running on http://localhost:5000/'
 
 stop-docker:
 	$(ENV_VARS) && docker-compose stop
