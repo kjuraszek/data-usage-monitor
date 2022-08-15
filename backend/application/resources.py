@@ -11,23 +11,22 @@ from backend.application.models import UsageStamp
 ns_single = Namespace('usage-stamp', description='Single Usage Stamp operations')
 ns_multi = Namespace('usage-stamps', description='Multiple Usage Stamps operations')
 
+
 @ns_single.route('/')
 class UsageStampAPI(Resource):
     """
     Single Usage Stamp operations.
     """
-    @api.doc('list_cats')
     @api.response(HTTPStatus.OK.value, 'Get the last usage stamp')
-    def get(self):
+    def get(self):  # pylint: disable=R0201
         """
         Return the last jsonified UsageStamp object
         """
         usage_stamp = UsageStamp.get_newest_by_date()
         return jsonify(usage_stamp)
 
-    @api.doc('list_cats')
     @api.response(HTTPStatus.OK.value, 'Insert new usage stamp')
-    def put(self):
+    def put(self):  # pylint: disable=R0201
         """
         Insert jsonified UsageStamp object
         """
@@ -37,8 +36,8 @@ class UsageStampAPI(Resource):
         if any(arg is None for arg in [current_month_download, current_month_upload, time_stamp]):
             return "Bad request - missing parameter", 400
         usage_stamp = UsageStamp(current_month_download=current_month_download,
-                                current_month_upload=current_month_upload,
-                                time_stamp=time_stamp)
+                                 current_month_upload=current_month_upload,
+                                 time_stamp=time_stamp)
         db.session.add(usage_stamp)
         db.session.commit()
         return jsonify(usage_stamp)
@@ -49,9 +48,8 @@ class UsageStampsAPI(Resource):
     """
     Multiple Usage Stamps operations.
     """
-    @api.doc('list_cats')
     @api.response(HTTPStatus.OK.value, 'Get the last 12 usage stamps')
-    def get(self):
+    def get(self):  # pylint: disable=R0201
         """
         Returns the last 12 usage stamps
         """
