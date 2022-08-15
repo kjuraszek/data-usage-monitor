@@ -3,7 +3,7 @@ This module creates a Flask application instance using Application Factory patte
 """
 from flask import Flask
 from flask_cors import CORS
-from backend.application.extensions import db, migrate
+from backend.application.extensions import db, migrate, api
 
 
 def init_app():
@@ -18,9 +18,10 @@ def init_app():
     db.init_app(app)
     migrate.init_app(app, db)
     with app.app_context():
-        from .blueprints import home_bp, usage_stamp_bp, usage_stamps_bp  # pylint: disable=C0415
+        from backend.application.blueprints import api_bp  # pylint: disable=C0415
+        from backend.application.resources import ns_single, ns_multi  # pylint: disable=C0415
         from . import models  # noqa: F401 pylint: disable=C0415,W0611
-        app.register_blueprint(home_bp)
-        app.register_blueprint(usage_stamp_bp)
-        app.register_blueprint(usage_stamps_bp)
+        app.register_blueprint(api_bp)
+        api.add_namespace(ns_single)
+        api.add_namespace(ns_multi)
         return app
